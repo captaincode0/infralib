@@ -33,8 +33,7 @@ struct Node *record_node = null;
 void add_sensor(short sensor_pin){
 	struct Node *tmpnode = null;
 
-	if(header_node != null
-		& record_node != null)
+	if((header_node != null) & (record_node != null))
 		tmpnode = header_node->last_node;
 
 	record_node = (struct Node *) malloc(sizeof(struct Node));
