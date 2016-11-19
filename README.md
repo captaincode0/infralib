@@ -6,7 +6,9 @@ La librería hace usos de estructuras dinámicas, listas doblemente enlazadas, e
 
 ```c++
     /*
-        Implementación del procedimiento para determinar si el sensor está o no activo, este método se utilizará al recorrer todos los sensores en la matriz de sensores infra rojos.
+        Implementación del procedimiento para determinar si el sensor 
+        está o no activo, este método se utilizará al recorrer todos 
+        los sensores en la matriz de sensores infra rojos.
      */
     bool check_sensor(short pin){
         if(Sensor.isActive(pin))
