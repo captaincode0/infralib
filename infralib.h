@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <iostream>
 
 #define null NULL
 
@@ -7,68 +8,68 @@ using namespace std;
 /**
  * Sensor structure
  */
-typedef Node{
-	Node *next_node;
-	Node *last_node;
-	uint8_t pin;
+struct Node{
+	struct Node *next_node;
+	struct Node *last_node;
+	short pin;
+	bool isactive;
 };
 
 //current node
-Node *header_node = null;
-//pass node
-Node *record_node = null;
+struct Node *header_node = null;
+//before node
+struct Node *record_node = null;
 
-/**
- * [add description]
- * @param  pin [description]
- * @return     [description]
- */
-bool add(uint8_t pin){
-	Node *beforenode = null;
+void add_sensor(short sensor_pin){
+	struct Node *tmpnode = null;
 
 	if(header_node != null
 		& record_node != null)
-		beforenode = header_node->last_node;
-	
-	record_node = (Node *) malloc(sizeof(Node));
-	record_node->next_node = (Node *) malloc(sizeof(Node));
-	record_node->last_node = beforenode;
-	record_node->pin = pin;
+		tmpnode = header_node->last_node;
+
+	record_node = (struct Node *) malloc(sizeof(struct Node));
+	record_node->next_node = header_node;
+	record_node->last_node = tmpnode;
+	record_node->pin = sensor_pin;
+	record_node->isactive = true;
 	header_node = record_node;
 }
 
 /**
- * [print print the values of the list]
+ * [prshort prshort the values of the list]
  */
-void print(){
-	Node* hnode = header_node;
+void print_sensors(){
+	struct Node* hnode = header_node;
 
 	while(hnode!=null){
-		cout<<hnode->pin<<endl;
-		node = header_node->next_node;
+		cout<<"sensor number: "<<hnode->pin<<endl;
+		cout<<"sensor active: "<<hnode->isactive<<endl;
+		hnode = hnode->next_node;
 	}
 }
 
-/**
- * [get_last_node get the last node of the current node]
- * @return [the last node]
- */
-Node* get_last_node(){
-	return header_node->last_node;
+//FUNCTION FOR UNIT TEST
+bool check_sensor(short pin){
+	return (pin%2 == 0)?true:false;
 }
 
-/**
- * [get_next_node get the next node of the current node]
- * @return [the next node]
- */
-Node* get_next_node(){
-	return header_node->next_node;
+struct Node* get_active_sensors(){
+	struct Node *sensors = header_node;
+
+	while(sensors != null){
+		//check if the sensor is active
+		sensors->isactive = (check_sensor(sensors->pin))?true:false;
+
+		//iterate the node
+		sensors = sensors->next_node;
+	}
+
+	return header_node;
 }
 
-/**
- * [get_active_sensors get one pointer of active sensors]
- * @return [an array of active sensors]
- */
-uint8_t* get_active_sensors(){
 
-}
+//overlod the operator ++ to pass to the next reference
+/*
+Node* operator ++(Node* currentnode){
+	return currentnode->next_node;
+}*/
