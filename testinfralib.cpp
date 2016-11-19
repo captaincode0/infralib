@@ -1,7 +1,5 @@
 #include "infralib.h"
 
-using namespace std;
-
 int main(){
 		cout<<"Adding eleven sensors"<<endl;
 		
@@ -9,6 +7,7 @@ int main(){
 		for(short sensor=0; sensor<11; sensor++)
 			add_sensor(sensor);
 
+		
 		struct Node *sensor_list = get_active_sensors();
 
 		while(sensor_list != null){
