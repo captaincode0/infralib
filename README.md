@@ -1,5 +1,5 @@
 # infralib
-`ìnfralib` es una librería para controlar sensores infrarojos hecho con la finalidad de obtener los sensores que están activos y obtener su valor.
+`ìnfralib` es una librería para controlar una matriz de sensores infra rojos y obtener sus parámetros, digitales o analógicos.
 
 ## ¿Cómo usar infralib?
 La librería hace usos de estructuras dinámicas, listas doblemente enlazadas, en las cuales almacena el pin del sensor y su estado [activo o no activo].

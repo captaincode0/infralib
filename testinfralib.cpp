@@ -4,7 +4,7 @@ int main(){
 		cout<<"Adding eleven sensors"<<endl;
 		
 		//add the first sensor
-		for(short sensor=0; sensor<11; sensor++)
+		for(short sensor=1; sensor<=60000; sensor++)
 			add_sensor(sensor);
 
 		
